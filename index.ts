@@ -2,6 +2,7 @@
 const firebase = require("./db/firebaseConfig");
 const wa = require('@open-wa/wa-automate');
 require('http').createServer((_, res) => res.end("Whatsapp Bot Ready!")).listen(8080);
+const nomorHp = "6282278602960@c.us";
 
 //const express = require("express");
 //const app = express();
@@ -18,7 +19,7 @@ app.listen(port, ()=>{
 });
 */
 
-wa.create({
+const bot = wa.create({
   sessionId: "EED_PROJECT",
   multiDevice: true, //required to enable multiDevice support
   authTimeout: 60, //wait only 60 seconds to get a connection with the host account device
@@ -29,17 +30,49 @@ wa.create({
   logConsole: false,
   popup: true,
   qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
-}).then(client => start(client));
+})
+
+bot.then(async client => start(client))
 
 function start(client) {
   client.onMessage(async message => {
     if (message.body.toLowerCase() === 'info') {
-      await client.sendText(message.from, '👋 Hello!');
+      firebase.ref('/info-data/').once('value').then(async (snapshot) => {
+        var msg = snapshot.val();
+
+        if(msg !== null){
+          await client.sendText(message.from, `Api : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+        }
+
+      })
+    }
+
+    if (message.body.toLowerCase() === 'reset'){
+      firebase.ref(`/info-data/`).once('value').then(async (snapshot) => {
+        var msg = snapshot.val();
+        if(msg !== null){
+          if (msg.pesan === "tidak aman"){
+            await client.sendText(nomorHp, `Peringatan... Awas Ada Api!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+          }
+          if(msg.pesan === "sedang" ){
+            await client.sendText(nomorHp, `Peringatan... Asap menyebar!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+          }
+        }
+      })
     }
   });
-  client.sendText("6282278602960@c.us", "Server Ready!")
-}
 
-function arduino(client) {
-    firebase.ref(`/info-data/`)
+  client.sendText(nomorHp, "Server Ready!");
+  firebase.ref(`/info-data/`).once('value').then(async (snapshot) => {
+    var msg = snapshot.val();
+    if(msg !== null){
+      if (msg.pesan === "tidak aman"){
+        await client.sendText(nomorHp, `Peringatan... Awas Ada Api!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+      }
+      if(msg.pesan === "sedang" ){
+        await client.sendText(nomorHp, `Peringatan... Asap menyebar!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+      }
+    }
+  });
+  
 }
