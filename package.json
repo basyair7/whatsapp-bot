@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.ts",
-    "node .": "node run index.ts",
-    "dev": "nodemon index.ts"
+    "start": "node server.ts",
+    "node .": "node run server.ts",
+    "dev": "nodemon server.ts"
   },
   "engines": {
     "node": "16.x"
