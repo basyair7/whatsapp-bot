@@ -1,0 +1,24 @@
+{
+  "name": "wa_bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.ts",
+    "node .": "node run index.ts",
+    "dev": "nodemon index.ts"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+    "@open-wa/wa-automate": "^4.36.0",
+    "express": "^4.18.1",
+    "firebase": "^9.8.1",
+    "firebase-admin": "^10.2.0",
+    "whatsapp-web.js": "^1.16.6"
+  },
+  "author": ""
+}

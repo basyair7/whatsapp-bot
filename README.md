@@ -1,2 +1,2 @@
-# whatsapp-bot
+# whatsapp-bot.js
 open source
