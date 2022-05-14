@@ -1,11 +1,14 @@
 // Reference : https://github.com/open-wa/wa-automate-nodejs
-
+const firebase = require("./db/firebaseConfig");
 const wa = require('@open-wa/wa-automate');
-const express = require("express");
-const app = express();
+require('http').createServer((_, res) => res.end("Whatsapp Bot Ready!")).listen(8080);
 
-let port = process.env.port || 3000;
+//const express = require("express");
+//const app = express();
 
+//let port = process.env.port || 3000;
+
+/*
 app.get("/", (req, res) => {
   res.send("Whatsapp-bot Project sudah online!");
 });
@@ -13,7 +16,7 @@ app.get("/", (req, res) => {
 app.listen(port, ()=>{
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
-
+*/
 
 wa.create({
   sessionId: "EED_PROJECT",
@@ -38,5 +41,5 @@ function start(client) {
 }
 
 function arduino(client) {
-    
+    firebase.ref(`/info-data/`)
 }
