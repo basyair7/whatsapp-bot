@@ -69,6 +69,22 @@ client.on("message", async (message) => {
     })
 })
 
+// client.on("message_create", async (message) => {
+//     firebase.ref('/info-data/').once('value').then(async (snapshot) => {
+//         var msg = snapshot.val();
+//         if(msg !== null){
+//             const nomorHp = "6282278602960@c.us";
+//             if(msg.pesan === "tidak aman"){
+//                 await client.sendMessage(nomorHp, `Peringatan... Awas Ada Api!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+//             }
+//             else if (msg.pesan === "sedang"){
+//                 await client.sendMessage(nomorHp, `Peringatan... Asap menyebar!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
+//             }
+//             else;
+//         }
+//     })
+// })
+
 // try {
 //     firebase.ref(`/info-data/`).once('value').then(async (snapshot) => {
 //         var msg = snapshot.val();
