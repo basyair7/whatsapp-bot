@@ -5,7 +5,7 @@ const express = require("express");
 
 const app = express();
 //const client = new Client()
-const nomorHp = "6282278602960@c.us";
+const nomorHp = "628@c.us";
 const client = new Client({
     authStrategy: new LocalAuth()
 });
@@ -57,7 +57,7 @@ client.on("message", async (message) => {
     firebase.ref('/info-data/').once('value').then(async (snapshot) => {
         var msg = snapshot.val();
         if(msg !== null){
-            const nomorHp = "6282278602960@c.us";
+            const nomorHp = "628@c.us";
             if(msg.pesan === "tidak aman"){
                 await client.sendMessage(nomorHp, `Peringatan... Awas Ada Api!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
             }
@@ -73,7 +73,7 @@ client.on("message", async (message) => {
 //     firebase.ref('/info-data/').once('value').then(async (snapshot) => {
 //         var msg = snapshot.val();
 //         if(msg !== null){
-//             const nomorHp = "6282278602960@c.us";
+//             const nomorHp = "628@c.us";
 //             if(msg.pesan === "tidak aman"){
 //                 await client.sendMessage(nomorHp, `Peringatan... Awas Ada Api!\n\nApi : ${msg.api} \nAsap : ${msg.asap} \nSuhu : ${msg.suhu}°C`);
 //             }
