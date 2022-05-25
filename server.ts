@@ -7,7 +7,8 @@ const app = express();
 //const client = new Client()
 const nomorHp = "628@c.us";
 const client = new Client({
-    authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth(),
+    headless: true
 });
 
 
