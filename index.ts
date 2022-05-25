@@ -2,7 +2,7 @@
 const firebase = require("./db/firebaseConfig");
 const wa = require('@open-wa/wa-automate');
 require('http').createServer((_, res) => res.end("Whatsapp Bot Ready!")).listen(8080);
-const nomorHp = "6282278602960@c.us";
+const nomorHp = "628@c.us";
 
 //const express = require("express");
 //const app = express();
