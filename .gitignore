@@ -1,0 +1,4 @@
+node_modules
+.wwebjs_auth
+src/db/firebaseKey/httpsFirebase.json
+src/db/firebaseKey/serviceAccount.json
