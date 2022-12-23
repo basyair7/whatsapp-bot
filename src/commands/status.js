@@ -5,6 +5,7 @@
 
 const db = require("../db/firebaseConfig");
 const ref = require("../db/path/reference.json");
+const clock = require("../model");
 
 exports.run = (client, msg) => {
     var data_sensor_1;
@@ -33,7 +34,7 @@ exports.run = (client, msg) => {
                             if (bool_pump_2 === true) status_pump_2 = "Hidup";
                             else if (bool_pump_2 === false) status_pump_2 = "Mati";
 
-                            var information = `\t*Status AWP*\nTanggal : ${DateTimeBot()}\n\nData Sensor\n> Kelembapan 1  : ${data_sensor_1}%\n> Kelembapan 2  : ${data_sensor_2}%\n\nStatus Pompa\n> Auto Pump  : ${status_auto_pump}\n> Pump 1        : ${status_pump_1}\n> Pump 2        : ${status_pump_2}`;
+                            var information = `\t*Status AWP*\nTanggal : ${clock.DateTimeBot()}\n\nData Sensor\n> Kelembapan 1  : ${data_sensor_1}%\n> Kelembapan 2  : ${data_sensor_2}%\n\nStatus Pompa\n> Auto Pump  : ${status_auto_pump}\n> Pump 1        : ${status_pump_1}\n> Pump 2        : ${status_pump_2}`;
 
                             msg.reply(information);
 
@@ -43,24 +44,4 @@ exports.run = (client, msg) => {
             });
         } else;
     });
-}
-
-var { DateTime } = require("luxon");
-
-function DateTimeBot() {
-    var local = DateTime.local();
-    var rezonedString = local.setZone("Asia/Jakarta");
-
-    // get Date
-    let year = rezonedString.c.year;
-    let month = rezonedString.c.month;
-    let day = rezonedString.c.day;
-
-    // get Time
-    let hour = rezonedString.c.hour;
-    let minute = rezonedString.c.minute;
-    let second = rezonedString.c.second;
-
-    let datetime = year + "/" + month + "/" + day + " (" + hour + ":" + minute + ":" + second + ")";
-    return datetime;
 }
